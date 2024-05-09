@@ -11,6 +11,6 @@ RUN addgroup -g 1001 appuser && \
     adduser -D -H -s /sbin/nologin -u 1001 -G appuser appuser && \
     chown -R appuser:appuser /app
 RUN chmod +x /app/jira-release-automation
-USER appuser
 RUN rm -rf /bin/*
+USER appuser
 CMD ["/app/jira-release-automation"]
