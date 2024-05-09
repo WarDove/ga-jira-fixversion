@@ -1,5 +1,6 @@
 name: 'Jira fixVersion automation'
 description: 'Creates a release version in a Jira project'
+icon: book-open
 inputs:
   versionName:
     description: 'Name of the version to create'
