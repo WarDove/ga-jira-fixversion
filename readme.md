@@ -56,4 +56,5 @@ jobs:
           jiraUser: ${{ secrets.JIRA_AUTOMATION_USER }}
           jiraToken: ${{ secrets.JIRA_AUTOMATION_TOKEN }}
           jiraUrl: https://myjira.atlassian.net
+
 ```
