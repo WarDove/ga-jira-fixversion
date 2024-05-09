@@ -1,0 +1,30 @@
+name: Jira Release Action
+run-name: "Jira Release Action | triggered by @${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+jobs:
+  jira-release:
+    if: github.event.created
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
+        id: extract_branch
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Jira Release Action
+        uses: wardove/github-actions/jira-release-automation@v1.0
+        with:
+          versionName: ${{ env.BRANCH_NAME }}
+          projectKey: DEV
+          jiraUser: ${{ secrets.JIRA_AUTOMATION_USER }}
+          jiraToken: ${{ secrets.JIRA_AUTOMATION_TOKEN }}
+          jiraUrl: https://myjira.atlassian.net
