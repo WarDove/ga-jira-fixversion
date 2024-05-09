@@ -49,13 +49,56 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Jira Release Action
-        uses: wardove/github-actions/jira-release-automation@v1.0
+        uses: wardove/ga-jira-fixversion@v1.0
         with:
           versionName: ${{ env.BRANCH_NAME }}
-          projectKey: DEV
+          projectKey: YOUR_JIRA_PROJECT_KEY
           jiraUser: ${{ secrets.JIRA_AUTOMATION_USER }}
           jiraToken: ${{ secrets.JIRA_AUTOMATION_TOKEN }}
-          jiraUrl: https://myjira.atlassian.net
+          jiraUrl: https://your_jira_subdomain.atlassian.net
+
+```
+
+For manual test workflow:
+
+```yaml
+name: Test Jira Release Action
+run-name: "Jira Release Action | triggered manually by @${{ github.actor }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionName:
+        description: 'Name of the version to create'
+        required: true
+      projectKey:
+        description: 'Jira project key'
+        required: true
+      jiraUser:
+        description: 'Jira user email'
+        required: true
+      jiraToken:
+        description: 'Jira API token'
+        required: true
+      jiraUrl:
+        description: 'Jira instance URL'
+        required: true
+
+jobs:
+  test-jira-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Jira Release Action
+        uses: ./
+        with:
+          versionName: ${{ github.event.inputs.versionName }}
+          projectKey: ${{ github.event.inputs.projectKey }}
+          jiraUser: ${{ github.event.inputs.jiraUser }}
+          jiraToken: ${{ github.event.inputs.jiraToken }}
+          jiraUrl: ${{ github.event.inputs.jiraUrl }}
 
 ```
 
