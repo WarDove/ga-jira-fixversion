@@ -1,5 +1,5 @@
-name: 'Create Jira Release'
-description: 'Creates a release version in Jira'
+name: 'Jira fixVersion automation'
+description: 'Creates a release version in a Jira project'
 inputs:
   versionName:
     description: 'Name of the version to create'
