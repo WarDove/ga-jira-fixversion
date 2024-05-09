@@ -1,0 +1,27 @@
+name: 'Create Jira Release'
+description: 'Creates a release version in Jira'
+inputs:
+  versionName:
+    description: 'Name of the version to create'
+    required: true
+  projectKey:
+    description: 'Jira project key'
+    required: true
+  jiraUser:
+    description: 'Jira user email'
+    required: true
+  jiraToken:
+    description: 'Jira API token'
+    required: true
+  jiraUrl:
+    description: 'Jira instance URL'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    VERSION_NAME: ${{ inputs.versionName }}
+    PROJECT_KEY: ${{ inputs.projectKey }}
+    JIRA_USER: ${{ inputs.jiraUser }}
+    JIRA_TOKEN: ${{ inputs.jiraToken }}
+    JIRA_URL: ${{ inputs.jiraUrl }}
