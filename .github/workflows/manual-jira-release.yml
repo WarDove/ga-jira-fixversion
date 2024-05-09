@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Jira Release Action
-        uses: ./action.yml
+        uses: ./.github/actions
         with:
           versionName: ${{ github.event.inputs.versionName }}
           projectKey: ${{ github.event.inputs.projectKey }}
