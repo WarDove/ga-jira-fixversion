@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Jira Release Action
-        uses: wardove/ga-jira-fixversion@v1.0
+        uses: wardove/ga-jira-fixversion@v2.0
         with:
           versionName: ${{ env.BRANCH_NAME }}
           projectKey: YOUR_JIRA_PROJECT_KEY
